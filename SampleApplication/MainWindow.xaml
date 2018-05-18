@@ -1,0 +1,65 @@
+﻿<Window x:Class="XBoxControllerDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XBoxControllerDemo"
+        mc:Ignorable="d"
+        Title="XBox 360 Controller" Height="400" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
+    <StackPanel>
+        <Grid>
+            <!--Left, Right Shoulders-->
+            <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black"  Name="LeftShoulderRectangle" ToolTip="Left Shoulder"/>
+            <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black" Name="RightShoulderRectangle" ToolTip="Right Shoulder"/>
+            <!--Battery Level-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,0,0,0" ToolTip="Battery Level">
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat1Rectangle"/>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat2Rectangle"/>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat3Rectangle"/>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="3" Height="10" Stroke="Black"/>
+            </StackPanel>
+        </Grid>
+        <Grid Height="25">
+            <!--Left, Right Triggers-->
+            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Left Trigger"/>
+            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Right Trigger"/>
+        </Grid>
+        <Grid>
+            <!--Left Thumb Stick-->
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Height="150" ToolTip="Left Thumb Stick">
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="LeftThumbCircle"/>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftThumbPositionsCircle" Margin="0,0,0,0"/>
+            </Grid>
+            <!--Start, Back Buttons-->
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="50">
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="StartCircle" ToolTip="Start Button"/>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="BackCircle" ToolTip="Back Button"/>
+            </Grid>
+            <!--A, B, X, Y Buttons-->
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="150">
+                <Ellipse Fill="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="ACircle" ToolTip="A Button"/>
+                <Ellipse Fill="DarkRed" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="BCircle" ToolTip="B Button"/>
+                <Ellipse Fill="DarkBlue" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="XCircle" ToolTip="X Button"/>
+                <Ellipse Fill="DarkOrange" HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="YCircle" ToolTip="Y Button"/>
+            </Grid>
+        </Grid>
+        <Grid Margin="75,0">
+            <!--D-Pad-->
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="150" ToolTip="D-Pad">
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="UpRectangle"/>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="DownRectangle"/>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftRectangle"/>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightRectangle"/>
+            </Grid>
+            <!--Right Thumb Stick-->
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Height="150"  ToolTip="Right Thumb Stick">
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="RightThumbCircle"/>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightThumbPositionsCircle" Margin="0,0,0,0"/>
+            </Grid>
+        </Grid>
+        <Grid>
+            <!--Connection Status-->
+            <Border BorderBrush="Black" Background="DarkRed" BorderThickness="1" CornerRadius="5,5,0,0" Width="20" Height="20" Name="ConnectedBorder" ToolTip="Connection Status"/>
+        </Grid>
+    </StackPanel>
+</Window>

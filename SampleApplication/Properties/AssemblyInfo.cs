@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("XBoxControllerTest")]
-[assembly: AssemblyDescription("Test application for the Com.Okmer.GameController library")]
+[assembly: AssemblyTitle("XBoxSampleApplication")]
+[assembly: AssemblyDescription("XBox 360 sample application for the Com.Okmer.GameController XBoxController library.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("okmer.com")]
-[assembly: AssemblyProduct("XBoxControllerTest")]
+[assembly: AssemblyProduct("XBoxSampleApplication")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("Okmer.Com by Remko van Brakel")]
 [assembly: AssemblyCulture("")]

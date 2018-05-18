@@ -10,7 +10,7 @@ namespace Com.Okmer.GameController.Helpers
     {
         public static float RemapF(this float value, float inMin, float inMax, float outMin, float outMax)
         {
-            return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+            return Math.Min(outMax, Math.Max(outMin, (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin));
         }
 
         public static float RemapF(this byte value, float inMin, float inMax, float outMin, float outMax)

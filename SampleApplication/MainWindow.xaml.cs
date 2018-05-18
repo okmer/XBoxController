@@ -30,6 +30,17 @@ namespace XBoxControllerDemo
 
             var guiDisp = Application.Current.Dispatcher;
 
+            //Connection
+            controller.Connection.StateChanged += (s, e) => guiDisp.Invoke(() => { ConnectedBorder.Background = new SolidColorBrush(e.State ? Colors.Green : Colors.DarkRed); });
+
+            //Battery
+            controller.Battery.LevelChanged += (s, e) => guiDisp.Invoke(() => 
+            {
+                Bat1Rectangle.Fill = new SolidColorBrush(e.Level > BatteryLevel.Empty ? Colors.Green : Colors.DarkGray);
+                Bat2Rectangle.Fill = new SolidColorBrush(e.Level > BatteryLevel.Low ? Colors.Green : Colors.DarkGray);
+                Bat3Rectangle.Fill = new SolidColorBrush(e.Level > BatteryLevel.Medium ? Colors.Green : Colors.DarkGray);
+            });
+
             //Buttons A, B, X, Y
             controller.A.StateChanged += (s, e) => guiDisp.Invoke(() => { ACircle.Fill = new SolidColorBrush(e.State ? Colors.Green : Colors.DarkGreen); });
             controller.B.StateChanged += (s, e) => guiDisp.Invoke(() => { BCircle.Fill = new SolidColorBrush(e.State ? Colors.Red : Colors.DarkRed); });

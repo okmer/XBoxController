@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XBoxControllerTest", "XBoxControllerTest\XBoxControllerTest.csproj", "{7E54A83A-77C1-472E-8E39-7B6156FA94D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication", "SampleApplication\XBoxSampleApplication.csproj", "{7E54A83A-77C1-472E-8E39-7B6156FA94D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Okmer.GameController", "Com.Okmer.GameController\Com.Okmer.GameController.csproj", "{80349134-1CC7-468A-B5C4-75B5A11A6B08}"
 EndProject
