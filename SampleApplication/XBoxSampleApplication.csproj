@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7E54A83A-77C1-472E-8E39-7B6156FA94D4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Com.Okmer.GameController</RootNamespace>
+    <RootNamespace>Com.Okmer.XBoxSampleApplication</RootNamespace>
     <AssemblyName>XBoxSampleApplication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

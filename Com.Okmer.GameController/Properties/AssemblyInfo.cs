@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Com.Okmer.GameController")]
-[assembly: AssemblyDescription("XBox 360 game controller library, build on top of SharpDX.XInput")]
+[assembly: AssemblyDescription("XBox 360 game controller library, build on top of SharpDX.XInput.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("okmer.com")]
 [assembly: AssemblyProduct("Com.Okmer.GameController")]

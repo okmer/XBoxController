@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("XBoxSampleConsole")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("XBox 360 sample console application for the Com.Okmer.GameController XBoxController library.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("okmer.com")]
 [assembly: AssemblyProduct("XBoxSampleConsole")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Okmer.Com by Remko van Brakel")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
