@@ -61,6 +61,7 @@
     <Compile Include="Components\XBoxTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Components\README.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
