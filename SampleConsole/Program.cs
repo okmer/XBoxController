@@ -62,9 +62,13 @@ namespace XBoxSampleConsole
             controller.A.StateChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
             controller.B.StateChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
 
-            //Rumble for 1000 milliseconds at 1.0f speed when the X or Y button is pushed
+            //Rumble at 1.0f speed for 1000 milliseconds when the X or Y button is pushed
             controller.X.StateChanged += (s, e) => controller.LeftRumble.Rumble(1.0f, 1000);
             controller.Y.StateChanged += (s, e) => controller.RightRumble.Rumble(1.0f, 1000);
+
+            //Rumble at the speed of the trigger position
+            controller.LeftTrigger.PositionChanged += (s, e) => controller.LeftRumble.Speed = e.Position;
+            controller.RightTrigger.PositionChanged += (s, e) => controller.RightRumble.Speed = e.Position;
 
             //Wait on ENTER to exit...
             Console.ReadLine();
