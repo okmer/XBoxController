@@ -58,6 +58,7 @@ namespace Com.Okmer.GameController
         {
             controller = new Controller(UserIndex.One);
 
+            //Forward changed left rumble speed to the controller 
             LeftRumble.SpeedChanged += (s, e) =>
             {
                 if (!controller.IsConnected)
@@ -67,6 +68,7 @@ namespace Com.Okmer.GameController
                 controller.SetVibration(vibration);
             };
 
+            //Forward changed right rumble speed to the controller
             RightRumble.SpeedChanged += (s, e) =>
             {
                 if (!controller.IsConnected)
@@ -76,6 +78,7 @@ namespace Com.Okmer.GameController
                 controller.SetVibration(vibration);
             };
 
+            //Fast poll loop
             fastPollTask = Task.Run(async () =>
             {
                 while (true)
@@ -85,6 +88,7 @@ namespace Com.Okmer.GameController
                 }
             });
 
+            //Slow poll loop
             slowPollTask = Task.Run(async () =>
             {
                 while (true)
@@ -95,6 +99,9 @@ namespace Com.Okmer.GameController
             });
         }
 
+        /// <summary>
+        /// The fast poll method to readout the button states, trigger positions, thumb stick states and positions.
+        /// </summary>
         private void FastPoll()
         {
             if (!controller.IsConnected)
@@ -133,6 +140,9 @@ namespace Com.Okmer.GameController
             RightThumb.SetPositions(rightPositionX, rightPositionY);
         }
 
+        /// <summary>
+        /// The slow poll method to readout the connection state and battery level.
+        /// </summary>
         private void SlowPoll()
         {
             Connection.State = controller.IsConnected;

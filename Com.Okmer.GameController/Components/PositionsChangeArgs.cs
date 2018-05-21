@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Com.Okmer.GameController
 {
-    public class PositionsChangeArgs : EventArgs
+    public class PositionsChangeArgs : StateChangeArgs
     {
         public float X { get; }
         public float Y { get; }
 
-        public PositionsChangeArgs(float x, float y)
+        public PositionsChangeArgs(float x, float y, bool state) : base(state)
         {
             X = x;
             Y = y;

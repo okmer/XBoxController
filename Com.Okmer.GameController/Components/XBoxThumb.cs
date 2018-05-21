@@ -25,7 +25,7 @@ namespace Com.Okmer.GameController
                 if (x != v)
                 {
                     x = v;
-                    OnPositionsChanged(new PositionsChangeArgs(x, y));
+                    OnPositionsChanged(new PositionsChangeArgs(x, y, State));
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace Com.Okmer.GameController
                 if (y != v)
                 {
                     y = v;
-                    OnPositionsChanged(new PositionsChangeArgs(x, y));
+                    OnPositionsChanged(new PositionsChangeArgs(x, y, State));
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Com.Okmer.GameController
             {
                 x = positionX;
                 y = positionY;
-                OnPositionsChanged(new PositionsChangeArgs(x, y));
+                OnPositionsChanged(new PositionsChangeArgs(x, y, State));
             }
 
         }
