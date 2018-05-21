@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XBoxControllerDemo"
         mc:Ignorable="d"
-        Title="XBox 360 Controller" Height="400" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
+        Title="XBox 360 Controller" Height="415" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
     <StackPanel>
         <Grid>
             <!--Left, Right Shoulders-->
@@ -21,8 +21,8 @@
         </Grid>
         <Grid Height="25">
             <!--Left, Right Triggers-->
-            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Left Trigger"/>
-            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Right Trigger"/>
+            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Left Trigger" IsEnabled="False"/>
+            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Right Trigger" IsEnabled="False"/>
         </Grid>
         <Grid>
             <!--Left Thumb Stick-->
@@ -57,9 +57,11 @@
                 <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightThumbPositionsCircle" Margin="0,0,0,0"/>
             </Grid>
         </Grid>
-        <Grid>
+        <Grid Height="25">
             <!--Connection Status-->
-            <Border BorderBrush="Black" Background="DarkRed" BorderThickness="1" CornerRadius="5,5,0,0" Width="20" Height="20" Name="ConnectedBorder" ToolTip="Connection Status"/>
+            <Border BorderBrush="Black" Background="DarkRed" BorderThickness="1" CornerRadius="5,5,0,0" Width="20" Height="25" Name="ConnectedBorder" ToolTip="Connection Status"/>
+            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftRumble" Minimum="0.0" Maximum="1.0" ToolTip="Left Rumble" ValueChanged="LeftRumble_ValueChanged"/>
+            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightRumble" Minimum="0.0" Maximum="1.0" ToolTip="Right Rumble" ValueChanged="RightRumble_ValueChanged"/>
         </Grid>
     </StackPanel>
 </Window>

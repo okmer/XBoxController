@@ -6,16 +6,20 @@ namespace Com.Okmer.GameController
 {
     public class XBoxController
     {
+        private Task fastPollTask;
+        private Task slowPollTask;
+
         public const float MinTrigger = 0.0f;
         public const float MaxTrigger = 1.0f;
 
         public const float MinThumb = -1.0f;
         public const float MaxThumb = 1.0f;
 
-        private Controller controller;
+        public const float MinRumble = 0.0f;
+        public const float MaxRumble = 1.0f;
 
-        private Task fastPollTask;
-        private Task slowPollTask;
+        private Controller controller;
+        private Vibration vibration = new Vibration();
 
         //Buttons
         public XBoxButton A { get; } = new XBoxButton();
@@ -47,9 +51,30 @@ namespace Com.Okmer.GameController
 
         public XBoxConnection Connection { get; } = new XBoxConnection();
 
+        public XBoxRumble LeftRumble { get; } = new XBoxRumble();
+        public XBoxRumble RightRumble { get; } = new XBoxRumble();
+
         public XBoxController(int fastPollIntervalMilliseconds = 10, int slowPollIntervalMilliseconds = 1000)
         {
             controller = new Controller(UserIndex.One);
+
+            LeftRumble.SpeedChanged += (s, e) =>
+            {
+                if (!controller.IsConnected)
+                    return;
+
+                vibration.LeftMotorSpeed = (ushort)e.Speed.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
+                controller.SetVibration(vibration);
+            };
+
+            RightRumble.SpeedChanged += (s, e) =>
+            {
+                if (!controller.IsConnected)
+                    return;
+
+                vibration.RightMotorSpeed = (ushort)e.Speed.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
+                controller.SetVibration(vibration);
+            };
 
             fastPollTask = Task.Run(async () =>
             {

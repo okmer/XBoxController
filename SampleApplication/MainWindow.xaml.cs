@@ -72,7 +72,18 @@ namespace XBoxControllerDemo
             //Thumb Positions Left, Right
             controller.LeftThumb.PositionsChanged += (s, e) => guiDisp.Invoke(() => { LeftThumbPositionsCircle.Margin = new Thickness(100.0 * e.X, -100.0 * e.Y, 0.0, 0.0); });
             controller.RightThumb.PositionsChanged += (s, e) => guiDisp.Invoke(() => { RightThumbPositionsCircle.Margin = new Thickness(100.0 * e.X, -100.0 * e.Y, 0.0, 0.0); });
+
+
         }
 
+        private void LeftRumble_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            controller.LeftRumble.Speed = (float)e.NewValue;
+        }
+
+        private void RightRumble_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            controller.RightRumble.Speed = (float)e.NewValue;
+        }
     }
 }

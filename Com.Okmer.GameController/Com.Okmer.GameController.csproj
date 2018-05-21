@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\LevelChangeArgs.cs" />
+    <Compile Include="Components\SpeedChangeArgs.cs" />
     <Compile Include="Components\XBoxBattery.cs" />
+    <Compile Include="Components\XBoxRumble.cs" />
     <Compile Include="Components\XBoxConnection.cs" />
     <Compile Include="Helpers\DeadZoneCorrectedExtension.cs" />
     <Compile Include="Helpers\RemapExtension.cs" />
