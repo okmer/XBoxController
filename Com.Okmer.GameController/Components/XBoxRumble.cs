@@ -33,5 +33,11 @@ namespace Com.Okmer.GameController
         {
             SpeedChanged?.Invoke(this, e);
         }
+
+        public void Rumble(float speed, int timeInMilliseconds)
+        {
+            Speed = speed;
+            Task.Delay(timeInMilliseconds).ContinueWith(t => Speed = 0.0f);
+        }
     }
 }

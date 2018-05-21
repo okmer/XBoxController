@@ -54,6 +54,18 @@ namespace XBoxSampleConsole
             controller.LeftThumb.PositionsChanged += (s, e) => Console.WriteLine($"Left thumb X: {e.X}, Y: {e.Y}");
             controller.RightThumb.PositionsChanged += (s, e) => Console.WriteLine($"Right thumb X: {e.X}, Y: {e.Y}");
 
+            //Rumble Left, Right
+            controller.LeftRumble.SpeedChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Speed}");
+            controller.RightRumble.SpeedChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Speed}");
+
+            //Rumble for 500 milliseconds at 0.25f speed when the A or B button is pushed
+            controller.A.StateChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
+            controller.B.StateChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
+
+            //Rumble for 1000 milliseconds at 1.0f speed when the X or Y button is pushed
+            controller.X.StateChanged += (s, e) => controller.LeftRumble.Rumble(1.0f, 1000);
+            controller.Y.StateChanged += (s, e) => controller.RightRumble.Rumble(1.0f, 1000);
+
             //Wait on ENTER to exit...
             Console.ReadLine();
         }
