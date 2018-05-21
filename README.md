@@ -21,6 +21,15 @@ controller.RightTrigger.PositionChanged += (s, e) => Console.WriteLine($"Right t
 //Thumbs
 controller.LeftThumb.PositionsChanged += (s, e) => Console.WriteLine($"Left thumb X: {e.X}, Y: {e.Y}");
 controller.RightThumb.PositionsChanged += (s, e) => Console.WriteLine($"Right thumb X: {e.X}, Y: {e.Y}");
+
+//Rumble Left, Right
+controller.LeftRumble.SpeedChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Speed}");
+controller.RightRumble.SpeedChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Speed}");
+
+//Rumble for 500 milliseconds at 0.25f speed when the A or B button is pushed
+controller.A.StateChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
+controller.B.StateChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
+
 ```
 
 Note: A BUG in SharpDX.XInput ci-ci217, resulting in issues with the  left Thumb Stick, Left Trigger, and Right Trigger! Please stick to SharpDX.XInput v4.1.0-ci184 for now...
