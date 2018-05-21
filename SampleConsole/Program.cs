@@ -58,7 +58,7 @@ namespace XBoxSampleConsole
             controller.LeftRumble.SpeedChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Speed}");
             controller.RightRumble.SpeedChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Speed}");
 
-            //Rumble for 500 milliseconds at 0.25f speed when the A or B button is pushed
+            //Rumble 0.25f speed for 500 milliseconds when the A or B button is pushed
             controller.A.StateChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
             controller.B.StateChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
 
