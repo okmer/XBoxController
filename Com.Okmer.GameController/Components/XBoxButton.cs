@@ -13,7 +13,7 @@ namespace Com.Okmer.GameController
         private bool state;
         public bool State
         {
-            get { return state; }
+            get => state;
             internal set
             {
                 if (state != value)

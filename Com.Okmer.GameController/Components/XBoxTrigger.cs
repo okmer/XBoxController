@@ -17,7 +17,7 @@ namespace Com.Okmer.GameController
         private float position;
         public float Position
         {
-            get { return position; }
+            get => position;
             internal set
             {
                 float v = value.DeadZoneCorrected(DeadZone);

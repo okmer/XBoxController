@@ -15,7 +15,7 @@ namespace Com.Okmer.GameController
         private BatteryLevel level;
         public BatteryLevel Level
         {
-            get { return level; }
+            get => level;
             internal set
             {
                 if (level != value)

@@ -13,7 +13,7 @@ namespace Com.Okmer.GameController
         private float speed;
         public float Speed
         {
-            get { return speed; }
+            get => speed;
             set
             {
                 if (speed != value)
