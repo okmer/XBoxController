@@ -60,8 +60,9 @@
         <Grid Height="25">
             <!--Connection Status-->
             <Border BorderBrush="Black" Background="DarkRed" BorderThickness="1" CornerRadius="5,5,0,0" Width="20" Height="25" Name="ConnectedBorder" ToolTip="Connection Status"/>
-            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftRumble" Minimum="0.0" Maximum="1.0" ToolTip="Left Rumble" ValueChanged="LeftRumble_ValueChanged"/>
-            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightRumble" Minimum="0.0" Maximum="1.0" ToolTip="Right Rumble" ValueChanged="RightRumble_ValueChanged"/>
+            <!--Rumble Sliders-->
+            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Minimum="0.0" Maximum="1.0" Name="LeftRumble" ToolTip="Left Rumble" ValueChanged="LeftRumble_ValueChanged"/>
+            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Minimum="0.0" Maximum="1.0" Name="RightRumble" ToolTip="Right Rumble" ValueChanged="RightRumble_ValueChanged"/>
         </Grid>
     </StackPanel>
 </Window>
