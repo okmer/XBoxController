@@ -47,10 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\LevelChangeArgs.cs" />
-    <Compile Include="Components\ThumbChangeArgs.cs" />
-    <Compile Include="Components\SpeedChangeArgs.cs" />
-    <Compile Include="Components\DPadChangeArgs.cs" />
+    <Compile Include="Components\EventArgs\LevelChangeArgs.cs" />
+    <Compile Include="Components\EventArgs\ThumbChangeArgs.cs" />
+    <Compile Include="Components\EventArgs\SpeedChangeArgs.cs" />
+    <Compile Include="Components\EventArgs\DPadChangeArgs.cs" />
     <Compile Include="Components\XBoxBattery.cs" />
     <Compile Include="Components\XBoxDPad.cs" />
     <Compile Include="Components\XBoxRumble.cs" />
@@ -59,9 +59,9 @@
     <Compile Include="Helpers\RemapExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XBoxController.cs" />
-    <Compile Include="Components\PositionChangeArgs.cs" />
-    <Compile Include="Components\PositionsChangeArgs.cs" />
-    <Compile Include="Components\StateChangeArgs.cs" />
+    <Compile Include="Components\EventArgs\PositionChangeArgs.cs" />
+    <Compile Include="Components\EventArgs\PositionsChangeArgs.cs" />
+    <Compile Include="Components\EventArgs\StateChangeArgs.cs" />
     <Compile Include="Components\XBoxButton.cs" />
     <Compile Include="Components\XBoxThumb.cs" />
     <Compile Include="Components\XBoxTrigger.cs" />
