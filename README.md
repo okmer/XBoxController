@@ -26,9 +26,13 @@ controller.RightThumb.PositionsChanged += (s, e) => Console.WriteLine($"Right th
 controller.LeftRumble.SpeedChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Speed}");
 controller.RightRumble.SpeedChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Speed}");
 
-//Rumble for 500 milliseconds at 0.25f speed when the A or B button is pushed
+//Rumble at 1.0f speed for 1000 milliseconds when the X or Y button is pushed
 controller.A.StateChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
 controller.B.StateChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
+
+//Rumble at the speed of the trigger position
+controller.LeftTrigger.PositionChanged += (s, e) => controller.LeftRumble.Speed = e.Position;
+controller.RightTrigger.PositionChanged += (s, e) => controller.RightRumble.Speed = e.Position;
 
 ```
 
