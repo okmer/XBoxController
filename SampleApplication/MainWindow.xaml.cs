@@ -34,7 +34,7 @@ namespace XBoxControllerDemo
             controller.Connection.StateChanged += (s, e) => guiDisp.Invoke(() => { ConnectedBorder.Background = new SolidColorBrush(e.State ? Colors.Green : Colors.DarkRed); });
 
             //Battery
-            controller.Battery.LevelChanged += (s, e) => guiDisp.Invoke(() => 
+            controller.Battery.LevelChanged += (s, e) => guiDisp.Invoke(() =>
             {
                 Bat1Rectangle.Fill = new SolidColorBrush(e.Level > BatteryLevel.Empty ? Colors.Green : Colors.DarkGray);
                 Bat2Rectangle.Fill = new SolidColorBrush(e.Level > BatteryLevel.Low ? Colors.Green : Colors.DarkGray);

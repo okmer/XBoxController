@@ -1,6 +1,8 @@
-﻿namespace Com.Okmer.GameController
+﻿using System;
+
+namespace Com.Okmer.GameController
 {
-    public class LevelChangeArgs
+    public class LevelChangeArgs : EventArgs
     {
         public BatteryLevel Level { get; }
 

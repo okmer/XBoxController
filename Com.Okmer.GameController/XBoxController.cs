@@ -34,10 +34,11 @@ namespace Com.Okmer.GameController
         public XBoxButton Back { get; } = new XBoxButton();
 
         //D-pad
-        public XBoxButton Up { get; } = new XBoxButton();
-        public XBoxButton Down { get; } = new XBoxButton();
-        public XBoxButton Left { get; } = new XBoxButton();
-        public XBoxButton Right { get; } = new XBoxButton();
+        public XBoxDPad DPad { get; } = new XBoxDPad();
+        public XBoxButton Up { get => DPad.Up; }
+        public XBoxButton Down { get => DPad.Down; }
+        public XBoxButton Left { get => DPad.Left; }
+        public XBoxButton Right { get => DPad.Right; }
 
         //Triggers
         public XBoxTrigger LeftTrigger { get; } = new XBoxTrigger(/*Gamepad.TriggerThreshold.RemapF(0, byte.MaxValue, 0.0f, TriggerMax)*/);
@@ -120,24 +121,21 @@ namespace Com.Okmer.GameController
             Start.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.Start);
             Back.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.Back);
 
-            Up.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp);
-            Down.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown);
-            Left.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft);
-            Right.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight);
-
-            LeftThumb.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftThumb);
-            RightThumb.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightThumb);
-
-            LeftTrigger.Position = gamepad.LeftTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
-            RightTrigger.Position = gamepad.RightTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
+            DPad.SetDPad(gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp),
+                         gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown),
+                         gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft),
+                         gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight));
 
             float leftPositionX = gamepad.LeftThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
             float leftPositionY = gamepad.LeftThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
-            LeftThumb.SetPositions(leftPositionX, leftPositionY);
+            LeftThumb.SetThumb(leftPositionX, leftPositionY, gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftThumb));
 
             float rightPositionX = gamepad.RightThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
             float rightPositionY = gamepad.RightThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
-            RightThumb.SetPositions(rightPositionX, rightPositionY);
+            RightThumb.SetThumb(rightPositionX, rightPositionY, gamepad.Buttons.HasFlag(GamepadButtonFlags.RightThumb));
+
+            LeftTrigger.Position = gamepad.LeftTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
+            RightTrigger.Position = gamepad.RightTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
         }
 
         /// <summary>
