@@ -47,11 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\EventArgs\FaceChangeArgs.cs" />
     <Compile Include="Components\EventArgs\LevelChangeArgs.cs" />
     <Compile Include="Components\EventArgs\ThumbChangeArgs.cs" />
     <Compile Include="Components\EventArgs\SpeedChangeArgs.cs" />
     <Compile Include="Components\EventArgs\DPadChangeArgs.cs" />
     <Compile Include="Components\XBoxBattery.cs" />
+    <Compile Include="Components\XBoxFace.cs" />
     <Compile Include="Components\XBoxDPad.cs" />
     <Compile Include="Components\XBoxRumble.cs" />
     <Compile Include="Components\XBoxConnection.cs" />
