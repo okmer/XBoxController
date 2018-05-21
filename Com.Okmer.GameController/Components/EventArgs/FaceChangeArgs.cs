@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Com.Okmer.GameController
 {
-    public class DPadChangeArgs : EventArgs
+    public class FaceChangeArgs : EventArgs
     {
-        public bool UpState { get; }
-        public bool DownState { get; }
-        public bool LeftState { get; }
-        public bool RightState { get; }
+        public bool AState { get; }
+        public bool BState { get; }
+        public bool XState { get; }
+        public bool YState { get; }
 
-        public DPadChangeArgs(bool upState, bool downState, bool leftState, bool rightState)
+        public FaceChangeArgs(bool aState, bool bState, bool xState, bool yState)
         {
-            UpState = upState;
-            DownState = downState;
-            LeftState = leftState;
-            RightState = rightState;
+            AState = aState;
+            BState = bState;
+            XState = xState;
+            YState = yState;
         }
     }
 }
