@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Com.Okmer.GameController
 {
-    public class XBoxConnection :XBoxButton
+    public class XBoxConnection : XBoxComponent<bool>
     {
-        public XBoxConnection(bool initialState = false) : base(initialState) {}
+        public XBoxConnection(bool initialValue = false) : base(initialValue) { }
     }
 }

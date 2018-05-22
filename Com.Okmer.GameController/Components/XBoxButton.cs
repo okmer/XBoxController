@@ -6,32 +6,8 @@ using System.Threading.Tasks;
 
 namespace Com.Okmer.GameController
 {
-    public class XBoxButton
+    public class XBoxButton : XBoxComponent<bool>
     {
-        public event EventHandler<StateChangeArgs> StateChanged;
-
-        private bool state;
-        public bool State
-        {
-            get => state;
-            internal set
-            {
-                if (state != value)
-                {
-                    state = value;
-                    OnStateChanged(new StateChangeArgs(state));
-                }
-            }
-        }
-
-        public XBoxButton(bool initialState = false)
-        {
-            state = initialState;
-        }
-
-        protected virtual void OnStateChanged(StateChangeArgs e)
-        {
-            StateChanged?.Invoke(this, e);
-        }
+        public XBoxButton(bool initialValue = false) : base(initialValue) { }
     }
 }

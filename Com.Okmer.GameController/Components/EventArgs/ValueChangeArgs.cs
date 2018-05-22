@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Com.Okmer.GameController
 {
-    public class PositionChangeArgs : EventArgs
+    public class ValueChangeArgs<T> : EventArgs
     {
-        public float Position { get; }
+        public T Value { get; }
 
-        public PositionChangeArgs(float position)
+        public ValueChangeArgs(T value)
         {
-            Position = position;
+            Value = value;
         }
     }
 }

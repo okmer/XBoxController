@@ -22,11 +22,10 @@ namespace Com.Okmer.GameController
         private Vibration vibration = new Vibration();
 
         //Buttons
-        public XBoxFace Face { get; } = new XBoxFace();
-        public XBoxButton A { get => Face.A; }
-        public XBoxButton B { get => Face.B; }
-        public XBoxButton X { get => Face.X; }
-        public XBoxButton Y { get => Face.Y; }
+        public XBoxButton A { get; } = new XBoxButton();
+        public XBoxButton B { get; } = new XBoxButton();
+        public XBoxButton X { get; } = new XBoxButton();
+        public XBoxButton Y { get; } = new XBoxButton();
 
         public XBoxButton LeftShoulder { get; } = new XBoxButton();
         public XBoxButton RightShoulder { get; } = new XBoxButton();
@@ -35,19 +34,22 @@ namespace Com.Okmer.GameController
         public XBoxButton Back { get; } = new XBoxButton();
 
         //D-pad
-        public XBoxDPad DPad { get; } = new XBoxDPad();
-        public XBoxButton Up { get => DPad.Up; }
-        public XBoxButton Down { get => DPad.Down; }
-        public XBoxButton Left { get => DPad.Left; }
-        public XBoxButton Right { get => DPad.Right; }
+        public XBoxButton Up { get; } = new XBoxButton();
+        public XBoxButton Down { get; } = new XBoxButton();
+        public XBoxButton Left { get; } = new XBoxButton();
+        public XBoxButton Right { get; } = new XBoxButton();
+
+        //Thumb sticks
+        public XBoxButton LeftThumbclick { get; } = new XBoxButton();
+        public XBoxButton RightThumbclick { get; } = new XBoxButton();
 
         //Triggers
         public XBoxTrigger LeftTrigger { get; } = new XBoxTrigger(/*Gamepad.TriggerThreshold.RemapF(0, byte.MaxValue, 0.0f, TriggerMax)*/);
         public XBoxTrigger RightTrigger { get; } = new XBoxTrigger(/*Gamepad.TriggerThreshold.RemapF(0, byte.MaxValue, 0.0f, TriggerMax)*/);
 
         //Thumb sticks
-        public XBoxThumb LeftThumb { get; } = new XBoxThumb(/*Gamepad.LeftThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
-        public XBoxThumb RightThumb { get; } = new XBoxThumb(/*Gamepad.RightThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
+        public XBoxThumbstick LeftThumbstick { get; } = new XBoxThumbstick(/*Gamepad.LeftThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
+        public XBoxThumbstick RightThumbstick { get; } = new XBoxThumbstick(/*Gamepad.RightThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
 
         public XBoxBattery Battery { get; } = new XBoxBattery();
 
@@ -61,22 +63,22 @@ namespace Com.Okmer.GameController
             controller = new Controller(UserIndex.One);
 
             //Forward changed left rumble speed to the controller 
-            LeftRumble.SpeedChanged += (s, e) =>
+            LeftRumble.ValueChanged += (s, e) =>
             {
                 if (!controller.IsConnected)
                     return;
 
-                vibration.LeftMotorSpeed = (ushort)e.Speed.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
+                vibration.LeftMotorSpeed = (ushort)e.Value.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
                 controller.SetVibration(vibration);
             };
 
             //Forward changed right rumble speed to the controller
-            RightRumble.SpeedChanged += (s, e) =>
+            RightRumble.ValueChanged += (s, e) =>
             {
                 if (!controller.IsConnected)
                     return;
 
-                vibration.RightMotorSpeed = (ushort)e.Speed.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
+                vibration.RightMotorSpeed = (ushort)e.Value.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
                 controller.SetVibration(vibration);
             };
 
@@ -111,32 +113,34 @@ namespace Com.Okmer.GameController
 
             var gamepad = controller.GetState().Gamepad;
 
-            Face.SetFace(gamepad.Buttons.HasFlag(GamepadButtonFlags.A),
-                         gamepad.Buttons.HasFlag(GamepadButtonFlags.B),
-                         gamepad.Buttons.HasFlag(GamepadButtonFlags.X),
-                         gamepad.Buttons.HasFlag(GamepadButtonFlags.Y));
+            A.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.A);
+            B.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.B);
+            X.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.X);
+            Y.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.Y);
 
-            LeftShoulder.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftShoulder);
-            RightShoulder.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightShoulder);
+            LeftShoulder.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftShoulder);
+            RightShoulder.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightShoulder);
 
-            Start.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.Start);
-            Back.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.Back);
+            Start.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.Start);
+            Back.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.Back);
 
-            DPad.SetDPad(gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp),
-                         gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown),
-                         gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft),
-                         gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight));
+            Up.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp);
+            Down.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown);
+            Left.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft);
+            Right.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight);
 
-            LeftTrigger.Position = gamepad.LeftTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
-            RightTrigger.Position = gamepad.RightTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
+            LeftThumbclick.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftThumb);
+            RightThumbclick.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightThumb);
 
-            LeftThumb.SetThumb(gamepad.LeftThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
-                               gamepad.LeftThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
-                               gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftThumb));
+            LeftTrigger.Value = gamepad.LeftTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
+            RightTrigger.Value = gamepad.RightTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
 
-            RightThumb.SetThumb(gamepad.RightThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
-                                gamepad.RightThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
-                                gamepad.Buttons.HasFlag(GamepadButtonFlags.RightThumb));
+            LeftThumbstick.SetValue(gamepad.LeftThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
+                                       gamepad.LeftThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb));
+
+
+            RightThumbstick.SetValue(gamepad.RightThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
+                                       gamepad.RightThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb));
         }
 
         /// <summary>
@@ -144,9 +148,9 @@ namespace Com.Okmer.GameController
         /// </summary>
         private void SlowPoll()
         {
-            Connection.State = controller.IsConnected;
+            Connection.Value = controller.IsConnected;
 
-            Battery.Level = controller.IsConnected ? (BatteryLevel)controller.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryLevel : BatteryLevel.Empty;
+            Battery.Value = controller.IsConnected ? (BatteryLevel)controller.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryLevel : BatteryLevel.Empty;
         }
     }
 }
