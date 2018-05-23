@@ -14,9 +14,6 @@ namespace Com.Okmer.GameController
             internal set => base.Value = value.DeadZoneCorrected(DeadZone);
         }
 
-        public float X => Value.X;
-        public float Y => Value.Y;
-
         public XBoxThumbstick(float deadZone = 0.0f, float initialX = 0.0f, float initialY = 0.0f) : base(new Vector2(initialX, initialY))
         {
             DeadZone = deadZone;
