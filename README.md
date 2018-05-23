@@ -5,34 +5,34 @@ XBox 360 Controller library with sample application using SharpDX.XInput in C#.
 XBoxController controller = new XBoxController();
 
 //Connection
-controller.Connection.StateChanged += (s, e) => Console.WriteLine($"Connection state: {e.State}");
+controller.Connection.ValueChanged += (s, e) => Console.WriteLine($"Connection state: {e.Value}");
 
 //Battery
-controller.Battery.LevelChanged += (s, e) => Console.WriteLine($"Battery level: {e.Level}");
+controller.Battery.ValueChanged += (s, e) => Console.WriteLine($"Battery level: {e.Value}");
 
 //Buttons
-controller.A.StateChanged += (s, e) => Console.WriteLine($"A state: {e.State}");
-controller.B.StateChanged += (s, e) => Console.WriteLine($"B state: {e.State}");
+controller.A.ValueChanged += (s, e) => Console.WriteLine($"A state: {e.Value}");
+controller.B.ValueChanged += (s, e) => Console.WriteLine($"B state: {e.Value}");
 
 //Triggers
-controller.LeftTrigger.PositionChanged += (s, e) => Console.WriteLine($"Left trigger position: {e.Position}");
-controller.RightTrigger.PositionChanged += (s, e) => Console.WriteLine($"Right trigger position: {e.Position}");
+controller.LeftTrigger.ValueChanged += (s, e) => Console.WriteLine($"Left trigger position: {e.Value}");
+controller.RightTrigger.ValueChanged += (s, e) => Console.WriteLine($"Right trigger position: {e.Value}");
 
 //Thumbs
-controller.LeftThumb.PositionsChanged += (s, e) => Console.WriteLine($"Left thumb X: {e.X}, Y: {e.Y}");
-controller.RightThumb.PositionsChanged += (s, e) => Console.WriteLine($"Right thumb X: {e.X}, Y: {e.Y}");
+controller.LeftThumbstick.ValueChanged += (s, e) => Console.WriteLine($"Left thumb X: {e.Value.X}, Y: {e.Value.Y}");
+controller.RightThumbstick.ValueChanged += (s, e) => Console.WriteLine($"Right thumb X: {e.Value.X}, Y: {e.Value.Y}");
 
 //Rumble Left, Right
-controller.LeftRumble.SpeedChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Speed}");
-controller.RightRumble.SpeedChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Speed}");
+controller.LeftRumble.ValueChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Value}");
+controller.RightRumble.ValueChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Value}");
 
 //Rumble 0.25f speed for 500 milliseconds when the A or B button is pushed
-controller.A.StateChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
-controller.B.StateChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
+controller.A.ValueChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
+controller.B.ValueChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
 
 //Rumble at the speed of the trigger position
-controller.LeftTrigger.PositionChanged += (s, e) => controller.LeftRumble.Speed = e.Position;
-controller.RightTrigger.PositionChanged += (s, e) => controller.RightRumble.Speed = e.Position;
+controller.LeftTrigger.ValueChanged += (s, e) => controller.LeftRumble.Rumble(e.Value);
+controller.RightTrigger.ValueChanged += (s, e) => controller.RightRumble.Rumble(e.Value);
 
 ```
 
