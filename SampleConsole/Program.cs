@@ -17,58 +17,58 @@ namespace XBoxSampleConsole
             Console.WriteLine("XBox 360 Controller (Press ENTER to exit...)");
 
             //Connection
-            controller.Connection.StateChanged += (s, e) => Console.WriteLine($"Connection state: {e.State}");
+            controller.Connection.ValueChanged += (s, e) => Console.WriteLine($"Connection state: {e.Value}");
 
             //Battery
-            controller.Battery.LevelChanged += (s, e) => Console.WriteLine($"Battery level: {e.Level}");
+            controller.Battery.ValueChanged += (s, e) => Console.WriteLine($"Battery level: {e.Value}");
 
             //Buttons A, B, X, Y
-            controller.A.StateChanged += (s, e) => Console.WriteLine($"A state: {e.State}");
-            controller.B.StateChanged += (s, e) => Console.WriteLine($"B state: {e.State}");
-            controller.X.StateChanged += (s, e) => Console.WriteLine($"X state: {e.State}");
-            controller.Y.StateChanged += (s, e) => Console.WriteLine($"Y state: {e.State}");
+            controller.A.ValueChanged += (s, e) => Console.WriteLine($"A state: {e.Value}");
+            controller.B.ValueChanged += (s, e) => Console.WriteLine($"B state: {e.Value}");
+            controller.X.ValueChanged += (s, e) => Console.WriteLine($"X state: {e.Value}");
+            controller.Y.ValueChanged += (s, e) => Console.WriteLine($"Y state: {e.Value}");
 
             //Buttons Start, Back
-            controller.Start.StateChanged += (s, e) => Console.WriteLine($"Start state: {e.State}");
-            controller.Back.StateChanged += (s, e) => Console.WriteLine($"Back state: {e.State}");
+            controller.Start.ValueChanged += (s, e) => Console.WriteLine($"Start state: {e.Value}");
+            controller.Back.ValueChanged += (s, e) => Console.WriteLine($"Back state: {e.Value}");
 
             //Buttons D-Pad Up, Down, Left, Right
-            controller.Up.StateChanged += (s, e) => Console.WriteLine($"Up state: {e.State}");
-            controller.Down.StateChanged += (s, e) => Console.WriteLine($"Down state: {e.State}");
-            controller.Left.StateChanged += (s, e) => Console.WriteLine($"Left state: {e.State}");
-            controller.Right.StateChanged += (s, e) => Console.WriteLine($"Right state: {e.State}");
+            controller.Up.ValueChanged += (s, e) => Console.WriteLine($"Up state: {e.Value}");
+            controller.Down.ValueChanged += (s, e) => Console.WriteLine($"Down state: {e.Value}");
+            controller.Left.ValueChanged += (s, e) => Console.WriteLine($"Left state: {e.Value}");
+            controller.Right.ValueChanged += (s, e) => Console.WriteLine($"Right state: {e.Value}");
 
             //Buttons Shoulder Left, Right
-            controller.LeftShoulder.StateChanged += (s, e) => Console.WriteLine($"Left shoulder state: {e.State}");
-            controller.RightShoulder.StateChanged += (s, e) => Console.WriteLine($"Right shoulder state: {e.State}");
+            controller.LeftShoulder.ValueChanged += (s, e) => Console.WriteLine($"Left shoulder state: {e.Value}");
+            controller.RightShoulder.ValueChanged += (s, e) => Console.WriteLine($"Right shoulder state: {e.Value}");
 
             //Buttons Thumb Left, Right
-            controller.LeftThumb.StateChanged += (s, e) => Console.WriteLine($"Left thumb state: {e.State}");
-            controller.RightThumb.StateChanged += (s, e) => Console.WriteLine($"Right thumb state: {e.State}");
+            controller.LeftThumbclick.ValueChanged += (s, e) => Console.WriteLine($"Left thumb state: {e.Value}");
+            controller.RightThumbclick.ValueChanged += (s, e) => Console.WriteLine($"Right thumb state: {e.Value}");
 
             //Trigger Position Left, Right 
-            controller.LeftTrigger.PositionChanged += (s, e) => Console.WriteLine($"Left trigger position: {e.Position}");
-            controller.RightTrigger.PositionChanged += (s, e) => Console.WriteLine($"Right trigger position: {e.Position}");
+            controller.LeftTrigger.ValueChanged += (s, e) => Console.WriteLine($"Left trigger position: {e.Value}");
+            controller.RightTrigger.ValueChanged += (s, e) => Console.WriteLine($"Right trigger position: {e.Value}");
 
             //Thumb Positions Left, Right
-            controller.LeftThumb.PositionsChanged += (s, e) => Console.WriteLine($"Left thumb X: {e.X}, Y: {e.Y}");
-            controller.RightThumb.PositionsChanged += (s, e) => Console.WriteLine($"Right thumb X: {e.X}, Y: {e.Y}");
+            controller.LeftThumbstick.ValueChanged += (s, e) => Console.WriteLine($"Left thumb X: {e.Value.X}, Y: {e.Value.Y}");
+            controller.RightThumbstick.ValueChanged += (s, e) => Console.WriteLine($"Right thumb X: {e.Value.X}, Y: {e.Value.Y}");
 
             //Rumble Left, Right
-            controller.LeftRumble.SpeedChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Speed}");
-            controller.RightRumble.SpeedChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Speed}");
+            controller.LeftRumble.ValueChanged += (s, e) => Console.WriteLine($"Left rumble speed: {e.Value}");
+            controller.RightRumble.ValueChanged += (s, e) => Console.WriteLine($"Right rumble speed: {e.Value}");
 
             //Rumble 0.25f speed for 500 milliseconds when the A or B button is pushed
-            controller.A.StateChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
-            controller.B.StateChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
+            controller.A.ValueChanged += (s, e) => controller.LeftRumble.Rumble(0.25f, 500);
+            controller.B.ValueChanged += (s, e) => controller.RightRumble.Rumble(0.25f, 500);
 
             //Rumble at 1.0f speed for 1000 milliseconds when the X or Y button is pushed
-            controller.X.StateChanged += (s, e) => controller.LeftRumble.Rumble(1.0f, 1000);
-            controller.Y.StateChanged += (s, e) => controller.RightRumble.Rumble(1.0f, 1000);
+            controller.X.ValueChanged += (s, e) => controller.LeftRumble.Rumble(1.0f, 1000);
+            controller.Y.ValueChanged += (s, e) => controller.RightRumble.Rumble(1.0f, 1000);
 
             //Rumble at the speed of the trigger position
-            controller.LeftTrigger.PositionChanged += (s, e) => controller.LeftRumble.Speed = e.Position;
-            controller.RightTrigger.PositionChanged += (s, e) => controller.RightRumble.Speed = e.Position;
+            controller.LeftTrigger.ValueChanged += (s, e) => controller.LeftRumble.Rumble(e.Value);
+            controller.RightTrigger.ValueChanged += (s, e) => controller.RightRumble.Rumble(e.Value);
 
             //Wait on ENTER to exit...
             Console.ReadLine();

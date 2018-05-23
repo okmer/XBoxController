@@ -39,13 +39,17 @@ namespace Com.Okmer.GameController
         public XBoxButton Left { get; } = new XBoxButton();
         public XBoxButton Right { get; } = new XBoxButton();
 
+        //Thumb sticks
+        public XBoxButton LeftThumbclick { get; } = new XBoxButton();
+        public XBoxButton RightThumbclick { get; } = new XBoxButton();
+
         //Triggers
         public XBoxTrigger LeftTrigger { get; } = new XBoxTrigger(/*Gamepad.TriggerThreshold.RemapF(0, byte.MaxValue, 0.0f, TriggerMax)*/);
         public XBoxTrigger RightTrigger { get; } = new XBoxTrigger(/*Gamepad.TriggerThreshold.RemapF(0, byte.MaxValue, 0.0f, TriggerMax)*/);
 
         //Thumb sticks
-        public XBoxThumb LeftThumb { get; } = new XBoxThumb(/*Gamepad.LeftThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
-        public XBoxThumb RightThumb { get; } = new XBoxThumb(/*Gamepad.RightThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
+        public XBoxThumbstick LeftThumbstick { get; } = new XBoxThumbstick(/*Gamepad.LeftThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
+        public XBoxThumbstick RightThumbstick { get; } = new XBoxThumbstick(/*Gamepad.RightThumbDeadZone.RemapF(0, short.MaxValue, 0.0f, ThumbMax)*/);
 
         public XBoxBattery Battery { get; } = new XBoxBattery();
 
@@ -58,24 +62,27 @@ namespace Com.Okmer.GameController
         {
             controller = new Controller(UserIndex.One);
 
-            LeftRumble.SpeedChanged += (s, e) =>
+            //Forward changed left rumble speed to the controller 
+            LeftRumble.ValueChanged += (s, e) =>
             {
                 if (!controller.IsConnected)
                     return;
 
-                vibration.LeftMotorSpeed = (ushort)e.Speed.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
+                vibration.LeftMotorSpeed = (ushort)e.Value.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
                 controller.SetVibration(vibration);
             };
 
-            RightRumble.SpeedChanged += (s, e) =>
+            //Forward changed right rumble speed to the controller
+            RightRumble.ValueChanged += (s, e) =>
             {
                 if (!controller.IsConnected)
                     return;
 
-                vibration.RightMotorSpeed = (ushort)e.Speed.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
+                vibration.RightMotorSpeed = (ushort)e.Value.RemapF(MinRumble, MaxRumble, ushort.MinValue, ushort.MaxValue);
                 controller.SetVibration(vibration);
             };
 
+            //Fast poll loop
             fastPollTask = Task.Run(async () =>
             {
                 while (true)
@@ -85,6 +92,7 @@ namespace Com.Okmer.GameController
                 }
             });
 
+            //Slow poll loop
             slowPollTask = Task.Run(async () =>
             {
                 while (true)
@@ -95,6 +103,9 @@ namespace Com.Okmer.GameController
             });
         }
 
+        /// <summary>
+        /// The fast poll method to readout the button states, trigger positions, thumb stick states and positions.
+        /// </summary>
         private void FastPoll()
         {
             if (!controller.IsConnected)
@@ -102,42 +113,44 @@ namespace Com.Okmer.GameController
 
             var gamepad = controller.GetState().Gamepad;
 
-            A.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.A);
-            B.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.B);
-            X.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.X);
-            Y.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.Y);
+            A.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.A);
+            B.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.B);
+            X.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.X);
+            Y.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.Y);
 
-            LeftShoulder.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftShoulder);
-            RightShoulder.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightShoulder);
+            LeftShoulder.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftShoulder);
+            RightShoulder.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightShoulder);
 
-            Start.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.Start);
-            Back.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.Back);
+            Start.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.Start);
+            Back.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.Back);
 
-            Up.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp);
-            Down.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown);
-            Left.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft);
-            Right.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight);
+            Up.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp);
+            Down.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown);
+            Left.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft);
+            Right.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight);
 
-            LeftThumb.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftThumb);
-            RightThumb.State = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightThumb);
+            LeftThumbclick.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftThumb);
+            RightThumbclick.Value = gamepad.Buttons.HasFlag(GamepadButtonFlags.RightThumb);
 
-            LeftTrigger.Position = gamepad.LeftTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
-            RightTrigger.Position = gamepad.RightTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
+            LeftTrigger.Value = gamepad.LeftTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
+            RightTrigger.Value = gamepad.RightTrigger.RemapF(byte.MinValue, byte.MaxValue, MinTrigger, MaxTrigger);
 
-            float leftPositionX = gamepad.LeftThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
-            float leftPositionY = gamepad.LeftThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
-            LeftThumb.SetPositions(leftPositionX, leftPositionY);
+            LeftThumbstick.SetValue(gamepad.LeftThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
+                                       gamepad.LeftThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb));
 
-            float rightPositionX = gamepad.RightThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
-            float rightPositionY = gamepad.RightThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb);
-            RightThumb.SetPositions(rightPositionX, rightPositionY);
+
+            RightThumbstick.SetValue(gamepad.RightThumbX.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb),
+                                       gamepad.RightThumbY.RemapF(short.MinValue, short.MaxValue, MinThumb, MaxThumb));
         }
 
+        /// <summary>
+        /// The slow poll method to readout the connection state and battery level.
+        /// </summary>
         private void SlowPoll()
         {
-            Connection.State = controller.IsConnected;
+            Connection.Value = controller.IsConnected;
 
-            Battery.Level = controller.IsConnected ? (BatteryLevel)controller.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryLevel : BatteryLevel.Empty;
+            Battery.Value = controller.IsConnected ? (BatteryLevel)controller.GetBatteryInformation(BatteryDeviceType.Gamepad).BatteryLevel : BatteryLevel.Empty;
         }
     }
 }

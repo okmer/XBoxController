@@ -8,37 +8,19 @@ using Com.Okmer.GameController.Helpers;
 
 namespace Com.Okmer.GameController
 {
-    public class XBoxTrigger
+    public class XBoxTrigger : XBoxComponent<float>
     {
-        public event EventHandler<PositionChangeArgs> PositionChanged;
-
         public float DeadZone { get; set; } = 0.0f;
 
-        private float position;
-        public float Position
+        public override float Value
         {
-            get { return position; }
-            internal set
-            {
-                float v = value.DeadZoneCorrected(DeadZone);
-
-                if (position != v)
-                {
-                    position = v;
-                    OnPositionChanged(new PositionChangeArgs(position));
-                }
-            }
+            get => base.Value;
+            internal set => base.Value = value.DeadZoneCorrected(DeadZone);
         }
 
-        public XBoxTrigger(float deadZone = 0.0f, float initialTrigger = 0.0f)
+        public XBoxTrigger(float deadZone = 0.0f, float initialValue = 0.0f) : base(initialValue)
         {
             DeadZone = deadZone;
-            position = initialTrigger;
-        }
-
-        protected virtual void OnPositionChanged(PositionChangeArgs e)
-        {
-            PositionChanged?.Invoke(this, e);
         }
     }
 }

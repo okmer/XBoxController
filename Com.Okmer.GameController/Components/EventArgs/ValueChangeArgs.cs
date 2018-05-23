@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Com.Okmer.GameController
 {
-    public class SpeedChangeArgs : EventArgs
+    public class ValueChangeArgs<T> : EventArgs
     {
-        public float Speed { get; }
+        public T Value { get; }
 
-        public SpeedChangeArgs(float speed)
+        public ValueChangeArgs(T value)
         {
-            Speed = speed;
+            Value = value;
         }
     }
 }

@@ -6,38 +6,19 @@ using System.Threading.Tasks;
 
 namespace Com.Okmer.GameController
 {
-    public class XBoxRumble
+    public class XBoxRumble : XBoxComponent<float>
     {
-        public event EventHandler<SpeedChangeArgs> SpeedChanged;
+        public const int INFINITE = -1;
 
-        private float speed;
-        public float Speed
+        public XBoxRumble(float initialValue = 0.0f) : base(initialValue) { }
+
+        public void Rumble(float value, int timeInMilliseconds = INFINITE)
         {
-            get { return speed; }
-            set
+            Value = value;
+            if (timeInMilliseconds > INFINITE)
             {
-                if (speed != value)
-                {
-                    speed = value;
-                    OnStateChanged(new SpeedChangeArgs(speed));
-                }
+                Task.Delay(timeInMilliseconds).ContinueWith(t => Value = 0.0f);
             }
-        }
-
-        public XBoxRumble(float initialSpeed = 0.0f)
-        {
-            speed = initialSpeed;
-        }
-
-        protected virtual void OnStateChanged(SpeedChangeArgs e)
-        {
-            SpeedChanged?.Invoke(this, e);
-        }
-
-        public void Rumble(float speed, int timeInMilliseconds)
-        {
-            Speed = speed;
-            Task.Delay(timeInMilliseconds).ContinueWith(t => Speed = 0.0f);
         }
     }
 }
