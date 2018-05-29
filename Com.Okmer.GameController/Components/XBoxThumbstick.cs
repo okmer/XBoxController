@@ -1,5 +1,5 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
+
 using Com.Okmer.GameController.Helpers;
 
 namespace Com.Okmer.GameController

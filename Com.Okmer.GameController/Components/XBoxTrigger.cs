@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Com.Okmer.GameController.Helpers;
+﻿using Com.Okmer.GameController.Helpers;
 
 namespace Com.Okmer.GameController
 {

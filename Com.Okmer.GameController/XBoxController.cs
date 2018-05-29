@@ -1,6 +1,7 @@
-﻿using Com.Okmer.GameController.Helpers;
+﻿using System.Threading.Tasks;
+
 using SharpDX.XInput;
-using System.Threading.Tasks;
+using Com.Okmer.GameController.Helpers;
 
 namespace Com.Okmer.GameController
 {
