@@ -18,9 +18,9 @@ namespace Com.Okmer.GameController
             get => value;
             internal set
             {
+                PreviousValue = Value;
                 if (!Value.Equals(value))
                 {
-                    PreviousValue = Value;
                     this.value = value;
                     OnComponentChanged(new ValueChangeArgs<T>(Value));
                 }
