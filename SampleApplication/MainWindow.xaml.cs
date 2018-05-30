@@ -52,8 +52,8 @@ namespace XBoxControllerDemo
             //Controller.RightShoulder.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightShoulderRectangle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
 
             //Buttons Thumb Left, Right
-            Controller.LeftThumbclick.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftThumbCircle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
-            Controller.RightThumbclick.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightThumbCircle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
+            //Controller.LeftThumbclick.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftThumbCircle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
+            //Controller.RightThumbclick.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightThumbCircle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
 
             //Trigger Position Left, Right 
             //Controller.LeftTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftTrigger.Value = e.Value; });

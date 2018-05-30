@@ -48,7 +48,18 @@
         <Grid>
             <!--Left Thumb Stick-->
             <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Height="150" ToolTip="Left Thumb Stick">
-                <Ellipse Fill="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="LeftThumbCircle"/>
+                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="LeftThumbCircle">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=LeftThumbclick.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
                 <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftThumbPositionsCircle" Margin="0,0,0,0"/>
             </Grid>
             <!--Start, Back Buttons-->
@@ -184,7 +195,18 @@
             </Grid>
             <!--Right Thumb Stick-->
             <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Height="150"  ToolTip="Right Thumb Stick">
-                <Ellipse Fill="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="RightThumbCircle"/>
+                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="RightThumbCircle">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=RightThumbclick.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
                 <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightThumbPositionsCircle" Margin="0,0,0,0"/>
             </Grid>
         </Grid>
