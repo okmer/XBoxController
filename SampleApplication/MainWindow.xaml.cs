@@ -21,7 +21,7 @@ namespace XBoxControllerDemo
             var guiDisp = Application.Current.Dispatcher;
 
             //Connection
-            Controller.Connection.ValueChanged += (s, e) => guiDisp.Invoke(() => { ConnectedBorder.Background = new SolidColorBrush(e.Value ? Colors.Green : Colors.DarkRed); });
+            //Controller.Connection.ValueChanged += (s, e) => guiDisp.Invoke(() => { ConnectedBorder.Background = new SolidColorBrush(e.Value ? Colors.Green : Colors.DarkRed); });
 
             //Battery
             Controller.Battery.ValueChanged += (s, e) => guiDisp.Invoke(() =>

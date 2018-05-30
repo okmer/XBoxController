@@ -212,8 +212,19 @@
         </Grid>
         <Grid Height="25">
             <!--Connection Status-->
-            <Border BorderBrush="Black" Background="DarkRed" BorderThickness="1" CornerRadius="5,5,0,0" Width="20" Height="25" Name="ConnectedBorder" ToolTip="Connection Status"/>
-            <!--Rumble Sliders-->
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5,5,0,0" Width="20" Height="25" Name="ConnectedBorder" ToolTip="Connection Status">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Background" Value="DarkRed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Connection.Value}" Value="True">
+                                <Setter Property="Background" Value="Green"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+                <!--Rumble Sliders-->
             <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Minimum="0.0" Maximum="1.0" Name="LeftRumble" ToolTip="Left Rumble" ValueChanged="LeftRumble_ValueChanged"/>
             <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Minimum="0.0" Maximum="1.0" Name="RightRumble" ToolTip="Right Rumble" ValueChanged="RightRumble_ValueChanged"/>
         </Grid>
