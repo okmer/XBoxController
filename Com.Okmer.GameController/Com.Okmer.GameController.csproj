@@ -53,6 +53,7 @@
     <Compile Include="Components\XBoxRumble.cs" />
     <Compile Include="Components\XBoxConnection.cs" />
     <Compile Include="Helpers\DeadZoneCorrectedExtension.cs" />
+    <Compile Include="Helpers\NotifyPropertyChanged.cs" />
     <Compile Include="Helpers\RemapExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XBoxController.cs" />

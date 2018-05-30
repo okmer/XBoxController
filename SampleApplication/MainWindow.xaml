@@ -3,10 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:XBoxControllerDemo"
         mc:Ignorable="d"
         Title="XBox 360 Controller" Height="415" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
-    <StackPanel>
+<StackPanel>
         <Grid>
             <!--Left, Right Shoulders-->
             <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black"  Name="LeftShoulderRectangle" ToolTip="Left Shoulder"/>
@@ -32,24 +31,134 @@
             </Grid>
             <!--Start, Back Buttons-->
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="50">
-                <Ellipse Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="StartCircle" ToolTip="Start Button"/>
-                <Ellipse Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="BackCircle" ToolTip="Back Button"/>
+                <Ellipse HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="StartCircle" ToolTip="Start Button">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Start.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <Ellipse HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="BackCircle" ToolTip="Back Button">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Back.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
             </Grid>
             <!--A, B, X, Y Buttons-->
             <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="150">
-                <Ellipse Fill="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="ACircle" ToolTip="A Button"/>
-                <Ellipse Fill="DarkRed" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="BCircle" ToolTip="B Button"/>
-                <Ellipse Fill="DarkBlue" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="XCircle" ToolTip="X Button"/>
-                <Ellipse Fill="DarkOrange" HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="YCircle" ToolTip="Y Button"/>
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="ACircle" ToolTip="A Button">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkGreen"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=A.Value}" Value="True">
+                                    <Setter Property="Fill" Value="Green"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <Ellipse HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="BCircle" ToolTip="B Button">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkRed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=B.Value}" Value="True">
+                                    <Setter Property="Fill" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <Ellipse HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="XCircle" ToolTip="X Button">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkBlue"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=X.Value}" Value="True">
+                                    <Setter Property="Fill" Value="Blue"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="YCircle" ToolTip="Y Button">
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Setter Property="Fill" Value="DarkOrange"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Y.Value}" Value="True">
+                                    <Setter Property="Fill" Value="Orange"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
             </Grid>
         </Grid>
         <Grid Margin="75,0">
             <!--D-Pad-->
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="150" ToolTip="D-Pad">
-                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="UpRectangle"/>
-                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="DownRectangle"/>
-                <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftRectangle"/>
-                <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightRectangle"/>
+                <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="UpRectangle">
+                    <Rectangle.Style>
+                        <Style TargetType="{x:Type Rectangle}">
+                                <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Up.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="DownRectangle">
+                    <Rectangle.Style>
+                        <Style TargetType="{x:Type Rectangle}">
+                            <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Down.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftRectangle">
+                    <Rectangle.Style>
+                        <Style TargetType="{x:Type Rectangle}">
+                            <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Left.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Rectangle HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightRectangle">
+                    <Rectangle.Style>
+                        <Style TargetType="{x:Type Rectangle}">
+                            <Setter Property="Fill" Value="DarkGray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Right.Value}" Value="True">
+                                    <Setter Property="Fill" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
             </Grid>
             <!--Right Thumb Stick-->
             <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Height="150"  ToolTip="Right Thumb Stick">

@@ -1,15 +1,25 @@
 ﻿using System;
 
+using Com.Okmer.GameController.Helpers;
+
 namespace Com.Okmer.GameController
 {
-    public abstract class XBoxComponent<T>
+    public abstract class XBoxComponent<T> : NotifyPropertyChanged
     {
         public event EventHandler<ValueChangeArgs<T>> ValueChanged;
 
+        private T previousValue;
         public T PreviousValue
         {
-            get;
-            private set;
+            get => previousValue;
+            private set
+            {
+                if (!previousValue.Equals(value))
+                {
+                    previousValue = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         private T value;
@@ -18,11 +28,12 @@ namespace Com.Okmer.GameController
             get => value;
             internal set
             {
+                PreviousValue = Value;
                 if (!Value.Equals(value))
                 {
-                    PreviousValue = Value;
                     this.value = value;
-                    OnComponentChanged(new ValueChangeArgs<T>(Value));
+                    OnPropertyChanged();
+                    OnValueChanged(new ValueChangeArgs<T>(Value));
                 }
             }
         }
@@ -38,7 +49,7 @@ namespace Com.Okmer.GameController
             value = initialValue;
         }
 
-        protected virtual void OnComponentChanged(ValueChangeArgs<T> e)
+        protected virtual void OnValueChanged(ValueChangeArgs<T> e)
         {
             ValueChanged?.Invoke(this, e);
         }
