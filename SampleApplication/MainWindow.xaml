@@ -8,8 +8,30 @@
 <StackPanel>
         <Grid>
             <!--Left, Right Shoulders-->
-            <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black"  Name="LeftShoulderRectangle" ToolTip="Left Shoulder"/>
-            <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black" Name="RightShoulderRectangle" ToolTip="Right Shoulder"/>
+            <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black"  Name="LeftShoulderRectangle" ToolTip="Left Shoulder">
+                <Rectangle.Style>
+                    <Style TargetType="{x:Type Rectangle}">
+                        <Setter Property="Fill" Value="DarkGray"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=LeftShoulder.Value}" Value="True">
+                                <Setter Property="Fill" Value="LightGray"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black" Name="RightShoulderRectangle" ToolTip="Right Shoulder">
+                <Rectangle.Style>
+                    <Style TargetType="{x:Type Rectangle}">
+                        <Setter Property="Fill" Value="DarkGray"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=RightShoulder.Value}" Value="True">
+                                <Setter Property="Fill" Value="LightGray"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
             <!--Battery Level-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,0,0,0" ToolTip="Battery Level">
                 <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat1Rectangle"/>
@@ -20,8 +42,8 @@
         </Grid>
         <Grid Height="25">
             <!--Left, Right Triggers-->
-            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Left Trigger" IsEnabled="False"/>
-            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Right Trigger" IsEnabled="False"/>
+            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTrigger" Minimum="0.0" Maximum="1.0" Value="{Binding Path=LeftTrigger.Value, Mode=OneWay}" ToolTip="Left Trigger" IsEnabled="False"/>
+            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTrigger" Minimum="0.0" Maximum="1.0" Value="{Binding Path=RightTrigger.Value, Mode=OneWay}" ToolTip="Right Trigger" IsEnabled="False"/>
         </Grid>
         <Grid>
             <!--Left Thumb Stick-->

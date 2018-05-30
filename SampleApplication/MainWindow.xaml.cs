@@ -48,16 +48,16 @@ namespace XBoxControllerDemo
             //Controller.Right.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightRectangle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
 
             //Buttons Shoulder Left, Right
-            Controller.LeftShoulder.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftShoulderRectangle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
-            Controller.RightShoulder.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightShoulderRectangle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
+            //Controller.LeftShoulder.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftShoulderRectangle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
+            //Controller.RightShoulder.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightShoulderRectangle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
 
             //Buttons Thumb Left, Right
             Controller.LeftThumbclick.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftThumbCircle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
             Controller.RightThumbclick.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightThumbCircle.Fill = new SolidColorBrush(e.Value ? Colors.LightGray : Colors.DarkGray); });
 
             //Trigger Position Left, Right 
-            Controller.LeftTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftTrigger.Value = e.Value; });
-            Controller.RightTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightTrigger.Value = e.Value; });
+            //Controller.LeftTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftTrigger.Value = e.Value; });
+            //Controller.RightTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() => { RightTrigger.Value = e.Value; });
 
             //Thumb Positions Left, Right
             Controller.LeftThumbstick.ValueChanged += (s, e) => guiDisp.Invoke(() => { LeftThumbPositionsCircle.Margin = new Thickness(100.0 * e.Value.X, -100.0 * e.Value.Y, 0.0, 0.0); });
