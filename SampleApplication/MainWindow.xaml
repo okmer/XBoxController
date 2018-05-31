@@ -3,12 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:Com.Okmer.XBoxSampleApplication"
         mc:Ignorable="d"
         Title="XBox 360 Controller" Height="415" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
-<StackPanel>
+    <Window.Resources>
+        <l:ThicknessValueConverter x:Key="thicknessConverter" />
+        <l:BatteryLevelValueConverter x:Key="batteryLevelConverter" />
+    </Window.Resources>
+    <StackPanel>
         <Grid>
             <!--Left, Right Shoulders-->
-            <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black"  Name="LeftShoulderRectangle" ToolTip="Left Shoulder">
+            <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black"  Name="LeftShoulderRectangle" ToolTip="Left Shoulder"/>
+            <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black" Name="RightShoulderRectangle" ToolTip="Right Shoulder"/>
+            <!--Left, Right Shoulders Bindings-->
+            <Rectangle HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black"  Name="LeftShoulderRectangleB" ToolTip="Left Shoulder">
+                <Rectangle.Clip>
+                    <RectangleGeometry Rect="75,0,75,50"/>
+                </Rectangle.Clip>
                 <Rectangle.Style>
                     <Style TargetType="{x:Type Rectangle}">
                         <Setter Property="Fill" Value="DarkGray"/>
@@ -20,7 +31,10 @@
                     </Style>
                 </Rectangle.Style>
             </Rectangle>
-            <Rectangle HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black" Name="RightShoulderRectangle" ToolTip="Right Shoulder">
+            <Rectangle HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="25" Stroke="Black" Name="RightShoulderRectangleB" ToolTip="Right Shoulder">
+                <Rectangle.Clip>
+                    <RectangleGeometry Rect="75,0,75,50"/>
+                </Rectangle.Clip>
                 <Rectangle.Style>
                     <Style TargetType="{x:Type Rectangle}">
                         <Setter Property="Fill" Value="DarkGray"/>
@@ -34,21 +48,48 @@
             </Rectangle>
             <!--Battery Level-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,0,0,0" ToolTip="Battery Level">
-                <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat1Rectangle"/>
-                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat2Rectangle"/>
-                <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat3Rectangle"/>
+                <Rectangle HorizontalAlignment="Left" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat1Rectangle" Fill="{Binding Path=Battery.Value, Converter={StaticResource batteryLevelConverter}, ConverterParameter=Low}" />
+                <Rectangle HorizontalAlignment="Center" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat2Rectangle" Fill="{Binding Path=Battery.Value, Converter={StaticResource batteryLevelConverter}, ConverterParameter=Medium}"/>
+                <Rectangle HorizontalAlignment="Right" VerticalAlignment="Center" Width="10" Height="15" Stroke="Black" Name="Bat3Rectangle" Fill="{Binding Path=Battery.Value, Converter={StaticResource batteryLevelConverter}, ConverterParameter=Full}"/>
                 <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="3" Height="10" Stroke="Black"/>
             </StackPanel>
         </Grid>
         <Grid Height="25">
             <!--Left, Right Triggers-->
-            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTrigger" Minimum="0.0" Maximum="1.0" Value="{Binding Path=LeftTrigger.Value, Mode=OneWay}" ToolTip="Left Trigger" IsEnabled="False"/>
-            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTrigger" Minimum="0.0" Maximum="1.0" Value="{Binding Path=RightTrigger.Value, Mode=OneWay}" ToolTip="Right Trigger" IsEnabled="False"/>
+            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Left Trigger" IsEnabled="False">
+                <Slider.Clip>
+                    <RectangleGeometry Rect="0,0,150,9"/>
+                </Slider.Clip>
+            </Slider>
+            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTrigger" Minimum="0.0" Maximum="1.0" ToolTip="Right Trigger" IsEnabled="False">
+                <Slider.Clip>
+                    <RectangleGeometry Rect="0,0,150,9"/>
+                </Slider.Clip>
+            </Slider>
+            <!--Left, Right Triggers Bindings-->
+            <Slider HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Name="LeftTriggerB" Minimum="0.0" Maximum="1.0" Value="{Binding Path=LeftTrigger.Value, Mode=OneWay}" ToolTip="Left Trigger" IsEnabled="False">
+                <Slider.Clip>
+                    <RectangleGeometry Rect="0,9,150,9"/>
+                </Slider.Clip>
+            </Slider>
+            <Slider HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Name="RightTriggerB" Minimum="0.0" Maximum="1.0" Value="{Binding Path=RightTrigger.Value, Mode=OneWay}" ToolTip="Right Trigger" IsEnabled="False">
+                <Slider.Clip>
+                    <RectangleGeometry Rect="0,9,150,9"/>
+                </Slider.Clip>
+            </Slider>
         </Grid>
         <Grid>
             <!--Left Thumb Stick-->
             <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Height="150" ToolTip="Left Thumb Stick">
-                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="LeftThumbCircle">
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="LeftThumbCircle">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="0,0,75,150"/>
+                    </Ellipse.Clip>
+                </Ellipse>
+                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="LeftThumbCircleB">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="75,0,75,150"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkGray"/>
@@ -60,11 +101,28 @@
                         </Style>
                     </Ellipse.Style>
                 </Ellipse>
-                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftThumbPositionsCircle" Margin="0,0,0,0"/>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftThumbPositionsCircle" Margin="0,0,0,0">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="0,0,25,50"/>
+                    </Ellipse.Clip>
+                </Ellipse>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftThumbPositionsCircleB" Margin="{Binding Path=LeftThumbstick.Value, Converter={StaticResource thicknessConverter}, ConverterParameter=100}">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Ellipse.Clip>
+                </Ellipse>
             </Grid>
             <!--Start, Back Buttons-->
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="50">
-                <Ellipse HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="StartCircle" ToolTip="Start Button">
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="StartCircle" ToolTip="Start Button"/>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="BackCircle" ToolTip="Back Button"/>
+            </Grid>
+            <!--Start, Back Buttons Bindings-->
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="50">
+                <Ellipse HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="StartCircleB" ToolTip="Start Button">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,25"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkGray"/>
@@ -76,7 +134,10 @@
                         </Style>
                     </Ellipse.Style>
                 </Ellipse>
-                <Ellipse HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="BackCircle" ToolTip="Back Button">
+                <Ellipse HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="25" Stroke="Black" Name="BackCircleB" ToolTip="Back Button">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,25"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkGray"/>
@@ -91,7 +152,17 @@
             </Grid>
             <!--A, B, X, Y Buttons-->
             <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="150">
-                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="ACircle" ToolTip="A Button">
+                <Ellipse Fill="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="ACircle" ToolTip="A Button"/>
+                <Ellipse Fill="DarkRed" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="BCircle" ToolTip="B Button"/>
+                <Ellipse Fill="DarkBlue" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="XCircle" ToolTip="X Button"/>
+                <Ellipse Fill="DarkOrange" HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="YCircle" ToolTip="Y Button"/>
+            </Grid>
+            <!--A, B, X, Y Buttons Bindings-->
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Height="150">
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="ACircleB" ToolTip="A Button">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkGreen"/>
@@ -103,7 +174,10 @@
                         </Style>
                     </Ellipse.Style>
                 </Ellipse>
-                <Ellipse HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="BCircle" ToolTip="B Button">
+                <Ellipse HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="BCircleB" ToolTip="B Button">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkRed"/>
@@ -115,7 +189,10 @@
                         </Style>
                     </Ellipse.Style>
                 </Ellipse>
-                <Ellipse HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="XCircle" ToolTip="X Button">
+                <Ellipse HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="XCircleB" ToolTip="X Button">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkBlue"/>
@@ -127,7 +204,10 @@
                         </Style>
                     </Ellipse.Style>
                 </Ellipse>
-                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="YCircle" ToolTip="Y Button">
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="YCircleB" ToolTip="Y Button">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkOrange"/>
@@ -144,7 +224,33 @@
         <Grid Margin="75,0">
             <!--D-Pad-->
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="150" ToolTip="D-Pad">
-                <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="UpRectangle">
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="UpRectangle">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="0,0,25,50"/>
+                    </Rectangle.Clip>
+                </Rectangle>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="DownRectangle">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="0,0,25,50"/>
+                    </Rectangle.Clip>
+                </Rectangle>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftRectangle">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="0,0,25,50"/>
+                    </Rectangle.Clip>
+                </Rectangle>
+                <Rectangle Fill="DarkGray" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightRectangle">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="0,0,25,50"/>
+                    </Rectangle.Clip>
+                </Rectangle>
+            </Grid>
+            <!--D-Pad Bindings-->
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="150" ToolTip="D-Pad">
+                <Rectangle HorizontalAlignment="Center" VerticalAlignment="Top" Width="50" Height="50" Stroke="Black" Name="UpRectangleB">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Rectangle.Clip>
                     <Rectangle.Style>
                         <Style TargetType="{x:Type Rectangle}">
                                 <Setter Property="Fill" Value="DarkGray"/>
@@ -156,7 +262,10 @@
                         </Style>
                     </Rectangle.Style>
                 </Rectangle>
-                <Rectangle HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="DownRectangle">
+                <Rectangle HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Height="50" Stroke="Black" Name="DownRectangleB">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Rectangle.Clip>
                     <Rectangle.Style>
                         <Style TargetType="{x:Type Rectangle}">
                             <Setter Property="Fill" Value="DarkGray"/>
@@ -168,7 +277,10 @@
                         </Style>
                     </Rectangle.Style>
                 </Rectangle>
-                <Rectangle HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftRectangle">
+                <Rectangle HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="LeftRectangleB">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Rectangle.Clip>
                     <Rectangle.Style>
                         <Style TargetType="{x:Type Rectangle}">
                             <Setter Property="Fill" Value="DarkGray"/>
@@ -180,7 +292,10 @@
                         </Style>
                     </Rectangle.Style>
                 </Rectangle>
-                <Rectangle HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightRectangle">
+                <Rectangle HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightRectangleB">
+                    <Rectangle.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Rectangle.Clip>
                     <Rectangle.Style>
                         <Style TargetType="{x:Type Rectangle}">
                             <Setter Property="Fill" Value="DarkGray"/>
@@ -195,7 +310,15 @@
             </Grid>
             <!--Right Thumb Stick-->
             <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Height="150"  ToolTip="Right Thumb Stick">
-                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="RightThumbCircle">
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="RightThumbCircle">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="0,0,75,150"/>
+                    </Ellipse.Clip>
+                </Ellipse>
+                <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Black" Name="RightThumbCircleB">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="75,0,75,150"/>
+                    </Ellipse.Clip>
                     <Ellipse.Style>
                         <Style TargetType="{x:Type Ellipse}">
                             <Setter Property="Fill" Value="DarkGray"/>
@@ -207,7 +330,16 @@
                         </Style>
                     </Ellipse.Style>
                 </Ellipse>
-                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightThumbPositionsCircle" Margin="0,0,0,0"/>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightThumbPositionsCircle" Margin="0,0,0,0">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="0,0,25,50"/>
+                    </Ellipse.Clip>
+                </Ellipse>
+                <Ellipse Fill="DarkGray" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" Stroke="Black" Name="RightThumbPositionsCircleB" Margin="{Binding Path=RightThumbstick.Value, Converter={StaticResource thicknessConverter}, ConverterParameter=100}">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="25,0,25,50"/>
+                    </Ellipse.Clip>
+                </Ellipse>
             </Grid>
         </Grid>
         <Grid Height="25">
