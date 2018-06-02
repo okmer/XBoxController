@@ -37,6 +37,26 @@ namespace SteintjeControllerFun
             {
                 Cow.Margin = new Thickness(this.ActualWidth * e.Value.X - 0.5 * Cow.Width, 30 * Math.Sin(0.01 * this.ActualWidth * e.Value.X), 0.0, 0.0);
             });
+
+            Controller.LeftTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() =>
+            {
+                double HalfPi = 0.5 * Math.PI;
+
+                Sun.Margin = new Thickness(0.5 * this.ActualWidth * e.Value,
+                                           -this.ActualHeight * Math.Sin(e.Value * HalfPi),
+                                           0.0, 
+                                           0.0);
+            });
+
+            Controller.RightTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() =>
+            {
+                double HalfPi = 0.5 * Math.PI;
+
+                Moon.Margin = new Thickness(0.0,
+                                           -this.ActualHeight * Math.Sin(e.Value * HalfPi),
+                                           0.5 * this.ActualWidth * e.Value,
+                                           0.0);
+            });
         }
 
         private void PlaySound(string soundFile)

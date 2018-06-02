@@ -9,13 +9,13 @@ namespace Com.Okmer.XBoxSampleApplication
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             object result = value;
-            float parameterValue;
+            float parameterValue = 1.0f;
 
-            if (value != null && targetType == typeof(float) &&
+            if (value != null && (targetType == typeof(float) || targetType == typeof(double)) &&
                 float.TryParse((string)parameter,
                 NumberStyles.Float, culture, out parameterValue))
             {
-                result = (float)value + parameterValue;
+                result = parameterValue * System.Convert.ToSingle(value);
             }
 
             return result;

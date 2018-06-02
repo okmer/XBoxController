@@ -12,14 +12,30 @@
         <converters:MultiplyValueConverter x:Key="multiplyConverter"/>
         <converters:ThicknessValueConverter x:Key="thicknessConverter" />
         <converters:ThicknessVerticalValueConverter x:Key="thicknessVerticalConverter" />
-    </Window.Resources>
-    <Grid Name="MainGrid">
+        </Window.Resources>
+        <Grid Name="MainGrid">
+        <Grid>
+            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Fill="LightBlue"/>
+        </Grid>
+        <assets:SunControl HorizontalAlignment="Left" VerticalAlignment="Center" Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" x:Name="Sun">
+            <UserControl.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=-0.25}" Y="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}"/>
+                </TransformGroup>
+            </UserControl.RenderTransform>
+        </assets:SunControl>
+        <assets:MoonControl HorizontalAlignment="Right" VerticalAlignment="Center"  Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" x:Name="Moon">
+            <UserControl.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}" Y="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}"/>
+                </TransformGroup>
+            </UserControl.RenderTransform>
+        </assets:MoonControl>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Fill="LightBlue"/>
             <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Fill="Green"/>
         </Grid>
         <Grid>
@@ -49,14 +65,83 @@
                 </UserControl.Style>
             </assets:SnailControl>
             <!--<assets:CowControl Width="256" Height="256" Margin="{Binding Path=LeftThumbstick.Value, Converter={StaticResource thicknessVerticalConverter}, ConverterParameter=400}"/>-->
-            <assets:CowControl Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}"  x:Name="Cow"/>
+            <assets:CowControl Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.33}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.33}"  x:Name="Cow">
+                <UserControl.RenderTransform>
+                    <TransformGroup>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </UserControl.RenderTransform>
+                <!--<UserControl.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="RenderTransform.Children[0].AngleX"
+                                From="1" To="-1" Duration="0:0:2" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="RenderTransform.Children[1].X"
+                                From="-4.0" To="4.0" Duration="0:0:2" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </UserControl.Triggers>-->
+            </assets:CowControl>
             <assets:ChickenControl HorizontalAlignment="Right" Width="128" Height="128" x:Name="Chicken"/>
             <assets:CatControl HorizontalAlignment="Right" Width="128" Height="128" x:Name="Cat"/>
-            <assets:SunControl VerticalAlignment="Top" Width="128" Height="128" x:Name="Sun"/>
-            <assets:MoonControl VerticalAlignment="Top" HorizontalAlignment="Right" Width="128" Height="128" x:Name="Moon"/>
-            <assets:EvergreenControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256" Height="256" x:Name="Evergreen"/>
-            <assets:DaizyControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="128" Height="128" x:Name="Daizy"/>
-            
+            <assets:EvergreenControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256" Height="256" x:Name="Evergreen">
+                <UserControl.RenderTransform>
+                    <TransformGroup>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </UserControl.RenderTransform>
+                <UserControl.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="RenderTransform.Children[0].AngleX"
+                                From="2.5" To="-2.5" Duration="0:0:3" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="RenderTransform.Children[1].X"
+                                From="-10.0" To="10.0" Duration="0:0:3" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </UserControl.Triggers>
+            </assets:EvergreenControl>
+            <assets:DaizyControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="128" Height="128" x:Name="Daizy">
+                <UserControl.RenderTransform>
+                    <TransformGroup>
+                        <SkewTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </UserControl.RenderTransform>
+                <UserControl.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="RenderTransform.Children[0].AngleX"
+                                From="1" To="-1" Duration="0:0:3" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="RenderTransform.Children[1].X"
+                                From="-2.0" To="2.0" Duration="0:0:3" 
+                                AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </UserControl.Triggers>
+            </assets:DaizyControl>
         </Grid>
     </Grid>
 </Window>

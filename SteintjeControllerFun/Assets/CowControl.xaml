@@ -15,7 +15,6 @@
                 <Canvas.Resources>
                     <PathGeometry xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Key="clipPath16" Figures="M 0 38 38 38 38 0 0 0 0 38 Z" FillRule="NonZero"/>
                 </Canvas.Resources>
-                <!--Unknown tag: sodipodi:namedview-->
                 <Canvas Name="g10">
                     <Canvas.RenderTransform>
                         <MatrixTransform Matrix="1.25 0 0 -1.25 0 47.5"/>
@@ -105,7 +104,6 @@
                         </Canvas>
                     </Canvas>
                 </Canvas>
-                <!--Unknown tag: metadata-->
             </Canvas>
         </Viewbox>
     </Grid>
