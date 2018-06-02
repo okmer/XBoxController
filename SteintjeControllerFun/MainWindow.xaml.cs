@@ -46,6 +46,16 @@ namespace SteintjeControllerFun
                                            -this.ActualHeight * Math.Sin(e.Value * HalfPi),
                                            0.0, 
                                            0.0);
+
+                Cloud1.Margin = new Thickness(-Cloud1.ActualWidth * e.Value,
+                                           0.0,
+                                           0.0,
+                                           0.0);
+
+                Cloud2.Margin = new Thickness(0.0,
+                           0.0,
+                           -Cloud2.ActualWidth * e.Value,
+                           0.0);
             });
 
             Controller.RightTrigger.ValueChanged += (s, e) => guiDisp.Invoke(() =>
@@ -56,6 +66,8 @@ namespace SteintjeControllerFun
                                            -this.ActualHeight * Math.Sin(e.Value * HalfPi),
                                            0.5 * this.ActualWidth * e.Value,
                                            0.0);
+
+                BlackSky.Opacity = e.Value;
             });
         }
 

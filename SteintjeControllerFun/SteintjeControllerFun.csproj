@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\CloudControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\CowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +104,9 @@
     </Compile>
     <Compile Include="Assets\ChickenControl.xaml.cs">
       <DependentUpon>ChickenControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\CloudControl.xaml.cs">
+      <DependentUpon>CloudControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\CowControl.xaml.cs">
       <DependentUpon>CowControl.xaml</DependentUpon>

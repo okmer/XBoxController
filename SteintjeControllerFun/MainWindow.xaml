@@ -17,6 +17,9 @@
         <Grid>
             <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Fill="LightBlue"/>
         </Grid>
+        <Grid>
+            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Fill="Black" Opacity="0.0" Name="BlackSky"/>
+        </Grid>
         <assets:SunControl HorizontalAlignment="Left" VerticalAlignment="Center" Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" x:Name="Sun">
             <UserControl.RenderTransform>
                 <TransformGroup>
@@ -31,6 +34,20 @@
                 </TransformGroup>
             </UserControl.RenderTransform>
         </assets:MoonControl>
+        <assets:CloudControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}" x:Name="Cloud1">
+            <UserControl.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.0}" Y="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.0}"/>
+                </TransformGroup>
+            </UserControl.RenderTransform>
+        </assets:CloudControl>
+        <assets:CloudControl HorizontalAlignment="Right" VerticalAlignment="Top" Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}" x:Name="Cloud2">
+            <UserControl.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.0}" Y="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.1}"/>
+                </TransformGroup>
+            </UserControl.RenderTransform>
+        </assets:CloudControl>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
