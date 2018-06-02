@@ -1,0 +1,54 @@
+﻿<Window x:Class="SteintjeControllerFun.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SteintjeControllerFun"
+        xmlns:converters="clr-namespace:SteintjeControllerFun.Converters"
+        xmlns:assets="clr-namespace:SteintjeControllerFun.Assets"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <converters:ThicknessValueConverter x:Key="thicknessConverter" />
+        <converters:ThicknessVerticalValueConverter x:Key="thicknessVerticalConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Fill="LightBlue"/>
+            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Fill="Green"/>
+        </Grid>
+        <Grid>
+            <assets:SnailControl HorizontalAlignment="Left" Width="64" Height="64" x:Name="Snale">
+                <UserControl.RenderTransform>
+                    <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <TranslateTransform X="64" Y="0"/>
+                    </TransformGroup>
+                </UserControl.RenderTransform>
+                <UserControl.Style>
+                    <Style TargetType="UserControl">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Start.Value}" Value="True">
+                                <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Duration="0:0:0.400" To="3" Storyboard.TargetProperty="BorderThickness" />
+                                        <DoubleAnimation Duration="0:0:0.300" To="125" Storyboard.TargetProperty="Height" />
+                                        <DoubleAnimation Duration="0:0:0.300" To="125" Storyboard.TargetProperty="Width" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </UserControl.Style>
+            </assets:SnailControl>
+            <!--<assets:CowControl Width="256" Height="256" Margin="{Binding Path=LeftThumbstick.Value, Converter={StaticResource thicknessVerticalConverter}, ConverterParameter=400}"/>-->
+            <assets:CowControl Width="256" Height="256" x:Name="Cow"/>
+        </Grid>
+    </Grid>
+</Window>

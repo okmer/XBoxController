@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:l="clr-namespace:Com.Okmer.XBoxSampleApplication"
+        xmlns:converters="clr-namespace:Com.Okmer.XBoxSampleApplication"
         mc:Ignorable="d"
         Title="XBox 360 Controller" Height="415" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
     <Window.Resources>
-        <l:ThicknessValueConverter x:Key="thicknessConverter" />
-        <l:BatteryLevelValueConverter x:Key="batteryLevelConverter" />
+        <converters:ThicknessValueConverter x:Key="thicknessConverter" />
+        <converters:BatteryLevelValueConverter x:Key="batteryLevelConverter" />
     </Window.Resources>
     <StackPanel>
         <Grid>
