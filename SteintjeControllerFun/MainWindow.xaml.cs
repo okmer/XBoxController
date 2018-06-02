@@ -35,7 +35,7 @@ namespace SteintjeControllerFun
 
             Controller.LeftThumbstick.ValueChanged += (s, e) => guiDisp.Invoke(() =>
             {
-                Cow.Margin = new Thickness(this.ActualWidth * e.Value.X - 0.5 * Cow.Width, 10 * Math.Sin(0.25 * this.ActualWidth * e.Value.X), 0.0, 0.0);
+                Cow.Margin = new Thickness(this.ActualWidth * e.Value.X - 0.5 * Cow.Width, 30 * Math.Sin(0.01 * this.ActualWidth * e.Value.X), 0.0, 0.0);
             });
         }
 

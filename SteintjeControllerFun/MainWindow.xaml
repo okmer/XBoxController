@@ -9,10 +9,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
+        <converters:MultiplyValueConverter x:Key="multiplyConverter"/>
         <converters:ThicknessValueConverter x:Key="thicknessConverter" />
         <converters:ThicknessVerticalValueConverter x:Key="thicknessVerticalConverter" />
     </Window.Resources>
-    <Grid>
+    <Grid Name="MainGrid">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -22,11 +23,11 @@
             <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Fill="Green"/>
         </Grid>
         <Grid>
-            <assets:SnailControl HorizontalAlignment="Left" Width="64" Height="64" x:Name="Snale">
+            <assets:SnailControl HorizontalAlignment="Left" Width="128" Height="128" x:Name="Snale">
                 <UserControl.RenderTransform>
                     <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
-                    <TranslateTransform X="64" Y="0"/>
+                    <TranslateTransform X="128" Y="0"/>
                     </TransformGroup>
                 </UserControl.RenderTransform>
                 <UserControl.Style>
@@ -48,7 +49,14 @@
                 </UserControl.Style>
             </assets:SnailControl>
             <!--<assets:CowControl Width="256" Height="256" Margin="{Binding Path=LeftThumbstick.Value, Converter={StaticResource thicknessVerticalConverter}, ConverterParameter=400}"/>-->
-            <assets:CowControl Width="256" Height="256" x:Name="Cow"/>
+            <assets:CowControl Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.25}"  x:Name="Cow"/>
+            <assets:ChickenControl HorizontalAlignment="Right" Width="128" Height="128" x:Name="Chicken"/>
+            <assets:CatControl HorizontalAlignment="Right" Width="128" Height="128" x:Name="Cat"/>
+            <assets:SunControl VerticalAlignment="Top" Width="128" Height="128" x:Name="Sun"/>
+            <assets:MoonControl VerticalAlignment="Top" HorizontalAlignment="Right" Width="128" Height="128" x:Name="Moon"/>
+            <assets:EvergreenControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256" Height="256" x:Name="Evergreen"/>
+            <assets:DaizyControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="128" Height="128" x:Name="Daizy"/>
+            
         </Grid>
     </Grid>
 </Window>

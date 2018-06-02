@@ -55,11 +55,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\CatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ChickenControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\CowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\DaizyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\EvergreenControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MoonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\SnailControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\SunControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,11 +95,29 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Assets\CatControl.xaml.cs">
+      <DependentUpon>CatControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\ChickenControl.xaml.cs">
+      <DependentUpon>ChickenControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\CowControl.xaml.cs">
       <DependentUpon>CowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\DaizyControl.xaml.cs">
+      <DependentUpon>DaizyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\EvergreenControl.xaml.cs">
+      <DependentUpon>EvergreenControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MoonControl.xaml.cs">
+      <DependentUpon>MoonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\SnailControl.xaml.cs">
       <DependentUpon>SnailControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\SunControl.xaml.cs">
+      <DependentUpon>SunControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BatteryLevelValueConverter.cs" />
     <Compile Include="Converters\MultiplyValueConverter.cs" />
