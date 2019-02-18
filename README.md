@@ -40,4 +40,4 @@ Note: A BUG in SharpDX.XInput ci-ci217, resulting in issues with the  left Thumb
 
 ![Sample Application Screenshot](https://github.com/okmer/XBoxController/blob/master/SampleApplicationScreenshot.png)
 
-![Steintje Controller Fun Screenshot](https://github.com/okmer/XBoxController/blob/TheSteintjeExperiment/SteintjeControllerFunScreenshot.jpg)
+![Steintje Controller Fun Screenshot](https://github.com/okmer/XBoxController/blob/TheSteintjeExperiment/SteintjeControllerFunScreenshot.png)
