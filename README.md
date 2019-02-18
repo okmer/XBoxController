@@ -36,7 +36,7 @@ controller.RightTrigger.ValueChanged += (s, e) => controller.RightRumble.Rumble(
 
 ```
 
-Note: A BUG in SharpDX.XInput ci-ci217, resulting in issues with the  left Thumb Stick, Left Trigger, and Right Trigger! Please stick to SharpDX.XInput v4.1.0-ci184 for now...
+Note: Updated SharpDX.XInput to v4.2.0...
 
 ![Sample Application Screenshot](https://github.com/okmer/XBoxController/blob/master/SampleApplicationScreenshot.png)
 
