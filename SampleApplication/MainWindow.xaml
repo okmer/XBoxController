@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="clr-namespace:Com.Okmer.XBoxSampleApplication"
         mc:Ignorable="d"
-        Title="XBox 360 Controller" Height="415" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
+        Title="XBox 360 Controller (Bindings vs Invoke)" Height="415" Width="500" ResizeMode="NoResize" Icon="Xbox360Pad.ico">
     <Window.Resources>
         <converters:ThicknessValueConverter x:Key="thicknessConverter" />
         <converters:BatteryLevelValueConverter x:Key="batteryLevelConverter" />

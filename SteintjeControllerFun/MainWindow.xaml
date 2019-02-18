@@ -7,7 +7,7 @@
         xmlns:converters="clr-namespace:SteintjeControllerFun.Converters"
         xmlns:assets="clr-namespace:SteintjeControllerFun.Assets"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Steintje Controller Fun" Height="450" Width="800" Icon="Xbox360Pad.png">
     <Window.Resources>
         <converters:MultiplyValueConverter x:Key="multiplyConverter"/>
         <converters:ThicknessValueConverter x:Key="thicknessConverter" />
@@ -109,7 +109,7 @@
             </assets:CowControl>
             <assets:ChickenControl HorizontalAlignment="Right" Width="128" Height="128" x:Name="Chicken"/>
             <assets:CatControl HorizontalAlignment="Right" Width="128" Height="128" x:Name="Cat"/>
-            <assets:EvergreenControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256" Height="256" x:Name="Evergreen">
+            <assets:EvergreenControl VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" Height="{Binding Path=ActualHeight, ElementName=MainGrid, Converter={StaticResource multiplyConverter}, ConverterParameter=0.5}" x:Name="Evergreen">
                 <UserControl.RenderTransform>
                     <TransformGroup>
                         <SkewTransform/>
